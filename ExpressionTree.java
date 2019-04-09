@@ -6,14 +6,16 @@ public class ExpressionTree{
   /* The sample tree would be: "(3 + (2 * 10))"     */
   public String toString(){
     /*you are to write this method*/
-    return "";
+    if (isValue()) return "" + getValue();
+    return "(" + getLeft() + " " + getOp() + " " + getRight() + ")";
   }
 
   /*return the expression as a postfix notation string without parenthesis*/
   /* The sample tree would be: "3 2 10 * +"     */
   public String toStringPostfix(){
     /*you are to write this method*/
-    return "";
+    if (this.isValue()) return this.getValue() + " ";
+    else return this.getLeft().toStringPostfix() + this.getRight().toStringPostfix() + this.getOp() + " ";
   }
 
   /*return the expression as a prefix notation string without parenthesis*/
@@ -21,7 +23,8 @@ public class ExpressionTree{
 
   public String toStringPrefix(){
     /*you are to write this method*/
-    return "";
+    if (this.isValue()) return this.getValue() + " ";
+    else return this.getOp() + " " + this.getLeft().toStringPostfix() + this.getRight().toStringPostfix();
   }
 
   /*return the value of the specified expression tree*/
